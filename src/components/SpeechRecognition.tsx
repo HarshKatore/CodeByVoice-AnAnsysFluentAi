@@ -16,7 +16,7 @@ const SpeechRecognition: React.FC = () => {
   const commonCommands = [
     "Enable energy equation",
     "Set turbulence model to k-epsilon",
-    "Initialize solution"
+    "Initialize solution",
   ];
 
   useEffect(() => {
@@ -90,6 +90,7 @@ const SpeechRecognition: React.FC = () => {
 
   const generatePyFluentCode = async (command: string) => {
     setIsProcessing(true);
+    setIsListening(false); // Stop listening when processing begins
     try {
       const code = await processCommand(command);
       setGeneratedCode(code);
@@ -116,13 +117,15 @@ const SpeechRecognition: React.FC = () => {
         <button
           onClick={toggleListening}
           className={`flex items-center justify-center px-6 py-3 rounded-lg font-medium text-white transition-all duration-200 ${
-            isListening
+            isListening && !isProcessing
               ? "bg-red-500 hover:bg-red-600 shadow-red-500/30"
               : "bg-ansys-blue hover:bg-[#1a367c] shadow-ansys-blue/30"
           } shadow-lg`}
-          aria-label={isListening ? "Stop listening" : "Start listening"}
+          aria-label={
+            isListening && !isProcessing ? "Stop listening" : "Start listening"
+          }
         >
-          {isListening ? (
+          {isListening && !isProcessing ? (
             <>
               <MicOff className="w-5 h-5 mr-2" />
               Stop Recording
