@@ -16,14 +16,21 @@ export const generatePyFluentCode = async (
           {
             role: "system",
             content:
-              "You are a PyFluent expert. Generate Python code for Ansys Fluent commands using PyFluent. Include necessary imports and provide complete code snippets. Use proper PyFluent syntax and best practices. Don't want a single line of explaination. just code.",
+              "You are a PyFluent expert. Generate ONLY the specific PyFluent command using the latest 2024R1 syntax. Important syntax rules:\n" +
+              "- Energy equation: setup.models.energy.enabled = True\n" +
+              "- NOT setup.models.energy_model.enabled or any other variation\n" +
+              "- Viscous models: setup.models.viscous.model = 'ke'\n" +
+              "- Boundary conditions: setup.boundary_conditions['velocity-inlet']['inlet']\n" +
+              "- Operating conditions: setup.operating_conditions.operating_pressure\n" +
+              "- Solution: solution.calculation.iterate()\n" +
+              "Keep it minimal, no imports or comments. Only return the exact command needed.",
           },
           {
             role: "user",
             content: command,
           },
         ],
-        temperature: 0.7,
+        temperature: 0.3, // Reduced temperature for more deterministic outputs
         max_tokens: 150,
       }),
     });

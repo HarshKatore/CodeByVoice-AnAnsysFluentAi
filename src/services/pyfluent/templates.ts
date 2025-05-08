@@ -14,15 +14,13 @@ export const commandTemplates: CommandTemplate[] = [
       "enable energy equation",
       "activate energy model",
     ],
-    code: `# Enable the energy equation
-setup.models.energy.enabled = True`,
+    code: `setup.models.energy.enabled = True`,
     description: "Enables the energy equation in the model",
   },
   {
     id: "disable_energy",
     patterns: ["disable energy", "turn off energy", "disable energy equation"],
-    code: `# Disable the energy equation
-setup.models.energy.enabled = False`,
+    code: `setup.models.energy.enabled = False`,
     description: "Disables the energy equation in the model",
   },
   {
@@ -34,8 +32,7 @@ setup.models.energy.enabled = False`,
       "set turbulence model to k epsilon",
       "use k epsilon model",
     ],
-    code: `# Set turbulence model to k-epsilon
-setup.models.viscous.model = "k-epsilon"
+    code: `setup.models.viscous.model = "ke"
 setup.models.viscous.ke.model = "standard"`,
     description: "Sets the turbulence model to standard k-epsilon",
   },
@@ -47,8 +44,7 @@ setup.models.viscous.ke.model = "standard"`,
       "change turbulence model to k omega",
       "set turbulence model to k omega",
     ],
-    code: `# Set turbulence model to k-omega
-setup.models.viscous.model = "k-omega"
+    code: `setup.models.viscous.model = "kw"
 setup.models.viscous.kw.model = "standard"`,
     description: "Sets the turbulence model to standard k-omega",
   },
@@ -59,8 +55,7 @@ setup.models.viscous.kw.model = "standard"`,
       "set operating pressure",
       "change operating pressure",
     ],
-    code: `# Set operating pressure to 101325 Pa (atmospheric)
-setup.boundary_conditions.operating.pressure = 101325.0`,
+    code: `setup.operating_conditions.operating_pressure = 101325.0`,
     description: "Sets the operating pressure to standard atmospheric pressure",
   },
   {
@@ -71,8 +66,7 @@ setup.boundary_conditions.operating.pressure = 101325.0`,
       "enable species transport",
       "activate species model",
     ],
-    code: `# Enable species transport model
-setup.models.species.enabled = True
+    code: `setup.models.species.enabled = True
 setup.models.species.model = "species-transport"`,
     description: "Enables the species transport model",
   },
@@ -84,8 +78,7 @@ setup.models.species.model = "species-transport"`,
       "initialization",
       "hybrid initialization",
     ],
-    code: `# Initialize the solution using hybrid initialization
-solution.initialization.hybrid_initialize()`,
+    code: `solution.initialization.hybrid_initialize()`,
     description: "Initializes the solution using hybrid initialization",
   },
   {
@@ -97,28 +90,23 @@ solution.initialization.hybrid_initialize()`,
       "run iterations",
       "calculate",
     ],
-    code: `# Run calculation for 100 iterations
-solution.run_calculation.iterate(number_of_iterations=100)`,
+    code: `solution.calculation.iterate(number_of_iterations=100)`,
     description: "Runs the calculation for 100 iterations",
   },
   {
     id: "set_velocity_inlet",
     patterns: ["set inlet velocity", "change inlet velocity", "velocity inlet"],
-    code: `# Set velocity inlet boundary condition
-# Replace 'inlet' with your actual inlet boundary name if different
-setup.boundary_conditions.velocity_inlet['inlet'].velocity.magnitude = 10.0  # m/s`,
+    code: `setup.boundary_conditions["velocity-inlet"]["inlet"].velocity_magnitude = 10.0`,
     description: "Sets the velocity magnitude at an inlet boundary",
   },
   {
     id: "set_mass_flow_inlet",
     patterns: ["set mass flow", "change mass flow", "mass flow inlet"],
-    code: `# Set mass flow inlet boundary condition
-# Replace 'inlet' with your actual inlet boundary name if different
-setup.boundary_conditions.mass_flow_inlet['inlet'].mass_flow = 0.1  # kg/s`,
+    code: `setup.boundary_conditions["mass-flow-inlet"]["inlet"].mass_flow = 0.1`,
     description: "Sets the mass flow rate at an inlet boundary",
   },
 ];
 
 export const getCodeTemplate = (command: string): string => {
-  return `import pyfluent as pf\n\n${command}\n`;
+  return command;
 };
