@@ -1,85 +1,132 @@
-# Fluenta: An Ansys Fluent Voice Assistant
+# Fluenta - An Ansys Fluent Voice Assistant
 
-Fluenta is an AI-powered voice assistant designed to streamline interactions with Ansys Fluent. By leveraging natural language processing, Fluenta allows users to control simulations, set parameters, and retrieve results using voice commands, enhancing productivity and accessibility in computational fluid dynamics (CFD) workflows.
+Welcome to the Fluenta repository! This project is a voice assistant for Ansys Fluent, designed to enhance user experience by enabling voice command interaction with the Fluent CFD software. Fluenta aims to streamline workflow and increase productivity for Fluent users.
 
-## 🚀 Features
+## Overview
 
-- **Voice-Controlled Commands**: Interact with Ansys Fluent using intuitive voice prompts.
-- **Natural Language Processing**: Understands and processes complex simulation instructions.
-- **Real-Time Feedback**: Provides immediate responses and confirmations for actions taken.
-- **Customizable Workflows**: Adaptable to various simulation setups and user preferences.
+Fluenta integrates natural language processing with Ansys Fluent to allow users to perform common simulation tasks, query results, and navigate the interface using voice commands. This voice-first approach makes complex CFD simulations more accessible and efficient.
 
-## 🛠️ Installation
+## Prerequisites
 
-1. **Clone the Repository**:
+Before you begin, ensure you have the following installed:
+- **Python** (version 3.8 or higher)
+- **Ansys Fluent** (2023 R1 or later)
+- **Git**
+- **pip** (Python package manager)
+- **Microphone and speakers** for voice interaction
 
-   ```bash
-   git clone https://github.com/HarshKatore/Fluenta-AnAnsysFluentVoiceAssistant.git
-   cd Fluenta-AnAnsysFluentVoiceAssistant
-Install Dependencies:
+## Getting Started
 
-Ensure you have Node.js installed. Then, install the required packages:
+Follow these steps to set up and run Fluenta on your local machine:
 
-bash
-Copy
-Edit
-npm install
-Run the Application:
+### 1. Clone the Repository
 
-Start the development server:
+First, clone the repository to your local machine:
 
-bash
-Copy
-Edit
-npm run dev
-The application will be accessible at http://localhost:3000.
+```bash
+git clone https://github.com/HarshKatore/Fluenta-AnAnsysFluentVoiceAssistant.git
+cd Fluenta-AnAnsysFluentVoiceAssistant
+```
 
-📁 Project Structure
-bash
-Copy
-Edit
-├── src/                   # Source code directory
-│   ├── components/        # Reusable UI components
-│   ├── assets/            # Static assets like images and icons
-│   ├── styles/            # Tailwind CSS configurations
-│   └── main.ts            # Entry point of the application
-├── index.html             # Main HTML file
-├── package.json           # Project metadata and dependencies
-├── tailwind.config.js     # Tailwind CSS configuration
-└── vite.config.ts         # Vite build tool configuration
-🧠 Usage
-Launch Fluenta: Start the application as described in the installation section.
+### 2. Create and Activate a Virtual Environment
 
-Interact via Voice: Use your microphone to issue commands. For example:
+It's recommended to use a virtual environment:
 
-"Set the inlet velocity to 5 meters per second."
+```bash
+python -m venv venv
+# On Windows
+venv\Scripts\activate
+# On macOS/Linux
+source venv/bin/activate
+```
 
-"Start the simulation."
+### 3. Install Dependencies
 
-"Display the pressure contour plot."
+Install all the required dependencies:
 
-Receive Feedback: Fluenta will process your commands and provide real-time feedback or results.
+```bash
+pip install -r requirements.txt
+```
 
-🔧 Configuration
-Tailwind CSS: Customize the UI by modifying tailwind.config.js.
+### 4. Configure Ansys Fluent Integration
 
-Vite: Adjust build and development settings in vite.config.ts.
+Set up the connection to your Ansys Fluent installation:
 
-🤝 Contributing
-Contributions are welcome! Please follow these steps:
+```bash
+python setup_fluent.py
+```
 
-Fork the repository.
+Follow the on-screen instructions to locate your Fluent installation directory.
 
-Create a new branch: git checkout -b feature/YourFeature
+### 5. Run Fluenta
 
-Commit your changes: git commit -m 'Add your feature'
+Start the Fluenta voice assistant:
 
-Push to the branch: git push origin feature/YourFeature
+```bash
+python run_fluenta.py
+```
 
-Open a pull request.
+### 6. Voice Command Testing
 
-📄 License
-This project is licensed under the MIT License.
+After starting Fluenta, you can test it with voice commands like:
+- "Create a new simulation"
+- "Set inlet velocity to 5 meters per second"
+- "Run the simulation for 100 iterations"
+- "Show me the pressure contours"
 
-📞 Contact
-For questions or suggestions, please contact Harsh Katore.
+## Project Structure
+
+The repository is organized as follows:
+- `src/` - Contains the core code for the Fluenta voice assistant
+- `models/` - Includes voice recognition and natural language processing models
+- `fluent_integration/` - Code for Ansys Fluent integration
+- `utils/` - Utility functions and helper modules
+- `config/` - Configuration files for customizing Fluenta
+- `tests/` - Test files for the project
+
+## Features
+
+- **Voice Command Recognition**: Understand and process spoken instructions
+- **Natural Language Understanding**: Translate natural language to Fluent commands
+- **Command Execution**: Interface with Fluent to execute commands
+- **Context Awareness**: Maintain context across multiple commands
+- **Query Capabilities**: Retrieve and present simulation results verbally
+- **Custom Command Creation**: Define personal shortcuts for frequent operations
+
+## Troubleshooting
+
+- **Voice Recognition Issues**: Ensure you're in a quiet environment and your microphone is properly configured
+- **Fluent Connection Errors**: Verify your Ansys Fluent installation path in the configuration
+- **Command Not Recognized**: Try rephrasing your command using simpler terms
+- **Performance Issues**: Close unnecessary applications to free up system resources
+
+## Contributing
+
+We welcome contributions to Fluenta! If you'd like to contribute, please follow these steps:
+1. Fork the repository
+2. Create a new branch for your feature or bugfix
+3. Submit a pull request with a detailed description of your changes
+
+Please ensure your code follows our coding standards and includes appropriate tests.
+
+## Future Development
+
+- Integration with Ansys Cloud for remote simulation management
+- Support for additional CAE software beyond Fluent
+- Mobile application for remote monitoring
+- Multi-language support
+- Advanced visualization capabilities
+
+## License
+
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
+
+## Contact
+
+For any questions or feedback, feel free to reach out to Harsh Katore at **harshkatore@16gmail.com**.
+
+## Acknowledgments
+
+- Ansys, Inc. for providing the Fluent software platform
+- The open-source speech recognition community
+- All contributors who have helped improve Fluenta
